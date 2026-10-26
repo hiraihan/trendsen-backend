@@ -91,6 +91,7 @@ def normalize_item(payload: Mapping[str, Any], author: str | None) -> CollectedI
         title=None,
         text=_first_string(payload.get("text")),
         author=author,
+        author_url=f"https://www.threads.net/@{author}" if author else None,
         published_at=_published_at(payload.get("timestamp")),
         metadata=_metadata(payload),
         metrics=_metrics(payload),

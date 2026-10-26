@@ -233,6 +233,36 @@ def test_metadata_keeps_the_quote_count_and_the_author_id(first_page: dict[str, 
     assert item.metadata["author_id"] == "1769999999999999666"
 
 
+def test_author_url_is_derived_when_the_username_resolved(
+    first_page: dict[str, Any], usernames: dict[str, str]
+) -> None:
+    with_author = normalize_item(first_page["data"][0], usernames=usernames)
+    without_author = normalize_item(first_page["data"][0], usernames={})
+
+    assert with_author is not None
+    assert with_author.author_url == "https://x.com/trend_sentinel"
+    assert without_author is not None
+    assert without_author.author_url is None
+
+
+def test_hashtags_are_extracted_from_the_text(first_page: dict[str, Any]) -> None:
+    payload = {
+        **first_page["data"][0],
+        "text": "Launching #TrendSentinel and #AI today #trendsentinel",
+    }
+    item = normalize_item(payload, usernames={})
+
+    assert item is not None
+    assert item.metadata["hashtags"] == ["trendsentinel", "ai"]
+
+
+def test_no_hashtags_yield_an_empty_list(first_page: dict[str, Any]) -> None:
+    item = normalize_item(first_page["data"][0], usernames={})
+
+    assert item is not None
+    assert item.metadata["hashtags"] == []
+
+
 # --------------------------------------------------------------------------- collection
 
 

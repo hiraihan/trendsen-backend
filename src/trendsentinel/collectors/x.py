@@ -23,6 +23,7 @@ Facts the implementation depends on:
 
 from __future__ import annotations
 
+import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
@@ -71,6 +72,27 @@ def _is_number(value: Any) -> TypeGuard[int | float]:
     return isinstance(value, int | float) and not isinstance(value, bool)
 
 
+#: A hashtag token in a post's text. Per Tweet, matches ``#tag`` (no trailing punctuation).
+_HASHTAG_RE = re.compile(r"#(\w+)")
+
+
+def _hashtags(text: str | None) -> list[str]:
+    """Extract the unique, case-folded hashtags present in a post's text.
+
+    This is a deterministic derivation from the text the source actually carried, not an
+    invented value. Case is folded (``#AI`` and ``#ai`` are one topic), order is that of
+    first appearance. An empty list means the text held no hashtags.
+    """
+    if not text:
+        return []
+    seen: list[str] = []
+    for match in _HASHTAG_RE.finditer(text):
+        tag = match.group(1).lower()
+        if tag and tag not in seen:
+            seen.append(tag)
+    return seen
+
+
 def normalize_item(
     payload: Mapping[str, Any], usernames: Mapping[str, str]
 ) -> CollectedItem | None:
@@ -92,16 +114,18 @@ def normalize_item(
 
     author_id = _first_string(payload.get("author_id"))
     username = usernames.get(author_id) if author_id else None
+    text = _first_string(payload.get("text"))
 
     return CollectedItem(
         external_id=external_id,
         # The URL is only honest when the username resolved; X ids are not public paths.
         url=f"https://x.com/{username}/status/{external_id}" if username else None,
         title=None,  # a post has no title; never fabricated
-        text=_first_string(payload.get("text")),
+        text=text,
         author=username,
+        author_url=f"https://x.com/{username}" if username else None,
         published_at=_published_at(payload.get("created_at")),
-        metadata=_metadata(payload, author_id),
+        metadata=_metadata(payload, author_id, text),
         metrics=_metrics(payload),
     )
 
@@ -145,13 +169,17 @@ def _metrics(payload: Mapping[str, Any]) -> dict[str, float] | None:
     return metrics or None
 
 
-def _metadata(payload: Mapping[str, Any], author_id: str | None) -> dict[str, Any]:
+def _metadata(
+    payload: Mapping[str, Any], author_id: str | None, text: str | None
+) -> dict[str, Any]:
     """Platform-specific context that does not fit the shared metric vocabulary."""
     raw_metrics = payload.get("public_metrics")
     quote_count = raw_metrics.get("quote_count") if isinstance(raw_metrics, Mapping) else None
     return {
         "quote_count": float(quote_count) if _is_number(quote_count) else None,
         "author_id": author_id,
+        # Hashtags visible in the post's own text (derived, not source-emitted).
+        "hashtags": _hashtags(text),
     }
 
 

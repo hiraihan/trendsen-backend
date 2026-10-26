@@ -117,6 +117,47 @@ def test_the_permalink_becomes_an_absolute_url(text_post: dict[str, Any]) -> Non
     assert item.url == "https://www.reddit.com/r/technology/comments/abc123/some_post_title/"
 
 
+def test_a_link_post_stores_the_outbound_article_url(link_post: dict[str, Any]) -> None:
+    """A link post's ``url`` is the article it points at, not the Reddit thread."""
+    item = normalize_item(link_post)
+
+    assert item is not None
+    assert item.url == "https://example.com/article"
+    assert item.content_type == "link"
+
+
+def test_a_self_post_is_detected_from_its_body(text_post: dict[str, Any]) -> None:
+    item = normalize_item(text_post)
+
+    assert item is not None
+    assert item.content_type == "self"
+
+
+def test_author_url_is_built_for_a_live_author(text_post: dict[str, Any]) -> None:
+    item = normalize_item(text_post)
+
+    assert item is not None
+    assert item.author_url == "https://www.reddit.com/user/someuser"
+
+
+def test_author_url_is_absent_for_a_deleted_author(link_post: dict[str, Any]) -> None:
+    """A removed account has no profile; ``/user/[deleted]`` would be a dead link."""
+    item = normalize_item(link_post)
+
+    assert item is not None
+    assert item.author_url is None
+
+
+def test_metadata_keeps_the_canonical_permalink(text_post: dict[str, Any]) -> None:
+    """The thread URL lives in metadata, distinct from the outbound item ``url``."""
+    item = normalize_item(text_post)
+
+    assert item is not None
+    assert item.metadata["permalink"] == (
+        "https://www.reddit.com/r/technology/comments/abc123/some_post_title/"
+    )
+
+
 def test_published_at_comes_from_created_utc(text_post: dict[str, Any]) -> None:
     item = normalize_item(text_post)
 

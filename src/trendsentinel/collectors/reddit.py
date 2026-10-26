@@ -44,7 +44,12 @@ from trendsentinel.collectors.thumbnail import THUMBNAIL_KEY, thumbnail_from_map
 from trendsentinel.config import Settings
 from trendsentinel.logging import get_logger
 
-__all__ = ["RedditCollector", "clear_token_cache", "normalize_item"]
+__all__ = [
+    "RedditCollector",
+    "clear_token_cache",
+    "normalize_item",
+    "reddit_user_url",
+]
 
 logger = get_logger(__name__)
 
@@ -71,6 +76,22 @@ def _first_string(value: Any) -> str | None:
     return None
 
 
+#: Reddit reports a removed account name as this literal; it is a fact, not an absence.
+_DELETED_AUTHOR = "[deleted]"
+
+
+def reddit_user_url(author: str | None) -> str | None:
+    """Return a Reddit profile URL, or ``None`` for a removed account.
+
+    A deleted author has no profile to point at; building ``/user/[deleted]`` would be a
+    dead link, so it stays absent. Otherwise the URL is a documented, deterministic
+    derivation from the author name — not a guess.
+    """
+    if not author or author == _DELETED_AUTHOR:
+        return None
+    return f"https://www.reddit.com/user/{author}"
+
+
 def normalize_item(payload: Mapping[str, Any]) -> CollectedItem | None:
     """Convert one ``t3`` post into the internal shape.
 
@@ -84,16 +105,26 @@ def normalize_item(payload: Mapping[str, Any]) -> CollectedItem | None:
     if external_id is None:
         return None
 
-    permalink = _first_string(payload.get("permalink"))
-    url = f"https://www.reddit.com{permalink}" if permalink else None
+    author = _first_string(payload.get("author"))
+    url = _first_string(payload.get("url"))
+    body = _first_string(payload.get("selftext"))
+    # A self post carries body text; a link post carries an outbound URL. Detected from
+    # the payload, not guessed — mirrors Hacker News' content_type logic.
+    content_type = "self" if body else ("link" if url else None)
 
     return CollectedItem(
         external_id=external_id,
+        # ``url`` mirrors the item's outbound target: the article a *link* post points at,
+        # or the thread URL for a *self* post (Reddit's own ``url`` field equals the
+        # permalink there). The canonical thread permalink is kept in metadata, so both the
+        # outbound target and the discussion thread survive.
         url=url,
         title=_first_string(payload.get("title")),
-        text=_first_string(payload.get("selftext")),
-        author=_first_string(payload.get("author")),
+        text=body,
+        author=author,
         published_at=_published_at(payload.get("created_utc")),
+        author_url=reddit_user_url(author),
+        content_type=content_type,
         metadata=_metadata(payload),
         metrics=_metrics(payload),
     )
@@ -144,6 +175,7 @@ def _metrics(payload: Mapping[str, Any]) -> dict[str, float] | None:
 
 def _metadata(payload: Mapping[str, Any]) -> dict[str, Any]:
     """Platform-specific context that does not fit the shared metric vocabulary."""
+    permalink = _first_string(payload.get("permalink"))
     return {
         "subreddit": _first_string(payload.get("subreddit")),
         "upvote_ratio": (
@@ -153,6 +185,9 @@ def _metadata(payload: Mapping[str, Any]) -> dict[str, Any]:
             else None
         ),
         "stickied": payload.get("stickied") if isinstance(payload.get("stickied"), bool) else None,
+        # The canonical thread URL (the discussion page), distinct from the outbound
+        # item ``url`` for a link post.
+        "permalink": f"https://www.reddit.com{permalink}" if permalink else None,
         # `preview` nests the image under images[].source.url; the shared scanner walks
         # it so a nesting change between API versions is not this adapter's problem.
         THUMBNAIL_KEY: thumbnail_from_mapping(payload.get("preview")),

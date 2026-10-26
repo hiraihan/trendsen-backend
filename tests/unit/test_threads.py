@@ -110,6 +110,13 @@ def test_the_author_is_the_profile_username(first_post: dict[str, Any]) -> None:
     assert item.author == "trendsentinel_ops"
 
 
+def test_author_url_is_derived_from_the_profile_username(first_post: dict[str, Any]) -> None:
+    item = normalize_item(first_post, PROFILE_USERNAME)
+
+    assert item is not None
+    assert item.author_url == "https://www.threads.net/@trendsentinel_ops"
+
+
 def test_the_permalink_becomes_the_url(first_post: dict[str, Any]) -> None:
     item = normalize_item(first_post, PROFILE_USERNAME)
 
