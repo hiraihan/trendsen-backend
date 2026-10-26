@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>The GitHub Blog</title>
+	<atom:link href="https://github.blog/feed/" rel="self" type="application/rss+xml" />
+	<link>https://github.blog/</link>
+	<description>Updates, ideas, and inspiration from GitHub to help developers build and design software.</description>
+	<lastBuildDate>Tue, 20 Oct 2026 16:05:09 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1.3</generator>
+
+<image>
+	<url>https://github.blog/wp-content/uploads/2019/01/cropped-github-favicon-512.png?fit=32%2C32</url>
+	<title>The GitHub Blog</title>
+	<link>https://github.blog/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">153214340</site>	<item>
+		<title>How 3 Java Champions are using GitHub Copilot for increased productivity</title>
+		<link>https://github.blog/ai-and-ml/github-copilot/how-3-java-champions-are-using-github-copilot-for-increased-productivity/</link>
+		
+		<dc:creator><![CDATA[Julien Dubois]]></dc:creator>
+		<pubDate>Tue, 20 Oct 2026 16:05:03 +0000</pubDate>
+				<category><![CDATA[AI & ML]]></category>
+		<category><![CDATA[GitHub Copilot]]></category>
+		<category><![CDATA[java]]></category>
+		<guid isPermaLink="false">https://github.blog/?p=99538</guid>
+
+					<description><![CDATA[<p>Three Java Champions share how they use GitHub Copilot to solve problems, accelerate development, and keep humans responsible for the results.</p>
+<p>The post <a href="https://github.blog/ai-and-ml/github-copilot/how-3-java-champions-are-using-github-copilot-for-increased-productivity/">How 3 Java Champions are using GitHub Copilot for increased productivity</a> appeared first on <a href="https://github.blog">The GitHub Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><p class="wp-block-paragraph">AI coding tools can generate code quickly, but speed alone does not solve the hardest software engineering problems. Developers still need to provide context, validate results, protect maintainability, and remain accountable for what ships.</p>
+
+
+
+<p class="wp-block-paragraph">To learn how experienced developers strike that balance, we spoke with three Java Champions, all with over a decade of experience in using Java. They shared concrete examples of using GitHub Copilot in production and open source, along with the practices they use to turn AI-generated output into reliable software.</p>
+
+
+
+<p class="wp-block-paragraph">Here are the tips they shared with us.</p>
+
+
+
+<aside data-color-mode="light" data-dark-theme="dark" data-light-theme="light_dimmed" class="wp-block-group post-aside--large p-4 p-md-6 is-style-light-dimmed has-global-padding is-layout-constrained wp-block-group-is-layout-constrained is-style-light-dimmed--1" style="border-top-width:4px">
+<h2 id="h-meet-the-java-champions" class="wp-block-heading h5-mktg gh-aside-title is-typography-preset-h5" style="margin-top:0">Meet the Java Champions</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Vlad Mihalcea</strong>, founder of Hypersistence and author of the book High-Performance Java Persistence</li>
+
+
+
+<li><strong>Patrick Baumgartner</strong>, software crafter at 42talents with 20+ years of Java experience</li>
+
+
+
+<li><strong>Frank Delporte</strong>, senior technical writer at Azul and maintainer of Foojay.io with 15+ years of Java experience</li>
+</ul>
+</aside>
+
+
+
+<h2 class="wp-block-heading" id="vlad-mihalcea">Vlad Mihalcea</h2>
+
+
+
+<p class="wp-block-paragraph">GitHub profile: <a href="https://github.com/vladmihalcea">@vladmihalcea</a></p>
+
+
+
+<p class="wp-block-paragraph"><strong>How has GitHub Copilot helped you recently?</strong></p>
+
+
+
+<p class="wp-block-paragraph">I&rsquo;ve been using it to analyze, design, and implement various features in both Hypersistence Utils and Hypersistence Optimizer.</p>
+
+
+
+<p class="wp-block-paragraph">For example, I&rsquo;ve been wanting for a long time to develop a web application that provides Optimizer event history so we can see how performance improvement efforts are materializing in application performance. Before AI, I kept postponing this task because it would have taken me weeks to develop. But using Copilot is like having a new team member, so I used it to create an app that will ship in the next version of Hypersistence Optimizer. Instead of weeks, this task took just two days to implement.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>What&rsquo;s your typical usage? Are you using GitHub Copilot as an IDE plugin or the GitHub Copilot app?</strong></p>
+
+
+
+<p class="wp-block-paragraph">I use GitHub Copilot in IntelliJ IDEA because it&rsquo;s convenient to run while reviewing source code or during a debug session.</p>
+
+
+
+<p class="wp-block-paragraph">It&rsquo;s very useful as a code assistant, and it helps me speed up both investigations and building prototypes for features that need validation.</p>
+
+
+
+<p class="wp-block-paragraph">I still review the plans and the code that is generated by AI since their goal is to improve my productivity, not replace me entirely. While AI provides the right answer in many situations, there are still times when the response is not satisfactory and requires my intervention.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Can you share some tips and best practices? For example, which skills are you using?</strong></p>
+
+
+
+<p class="wp-block-paragraph">I created my own skills so that whatever text Copilot generates looks like something I wrote by hand.</p>
+
+
+
+<p class="wp-block-paragraph">This skill captures my voice from 65 of my published articles, so a draft comes back sounding like my blog instead of like a language model. This is really useful when generating documentation for this project, since it lets the LLM learn from 12 years of blogging and provide examples that follow the same principles, such as expressiveness, testability, and simplicity.</p>
+
+
+
+<p class="wp-block-paragraph">Throughout my career as a software engineer, I&rsquo;ve learned that we spend far more time on code maintenance than on creating it. Therefore, because maintenance and stability are critical for existing products, I developed skills that help AI mimic existing code practices in accordance with the principle of least astonishment.</p>
+
+
+
+<p class="wp-block-paragraph">One tip is to change the model type based on the type of operation. For thorough thinking, I use Opus with the 1 million context window and Extra High or Max reasoning. However, for simpler tasks, such as generating reports, release notes, or verifying documentation, I use lighter models that consume fewer tokens.</p>
+
+
+
+<h2 class="wp-block-heading" id="patrick-baumgartner">Patrick Baumgartner</h2>
+
+
+
+<p class="wp-block-paragraph">GitHub profile: <a href="https://github.com/patbaumgartner">@patbaumgartner</a></p>
+
+
+
+<p class="wp-block-paragraph"><strong>Your work involves coaching teams. What is your approach?</strong></p>
+
+
+
+<p class="wp-block-paragraph">A lot of my work happens while the normal business still has to keep running. You cannot stop everything for six months to &ldquo;transform.&rdquo; We usually start by solving immediate problems together, understand where the team currently stands, define where we want to go and how we will know that we are improving, and then move there step by step.</p>
+
+
+
+<p class="wp-block-paragraph">Depending on the situation, that can mean Software Craft practices such as TDD, refactoring, continuous delivery and XP; architecture and modularisation with Spring Boot, Spring Modulith; Spring Security; optimising Java and Spring Boot applications for containers; or increasingly, agentic engineering.</p>
+
+
+
+<p class="wp-block-paragraph">The important part for me is that I work <em>with</em> the team. We make decisions together. I don&rsquo;t want a team to become dependent on me. Ideally, after some time they no longer need me except perhaps as a sparring partner.</p>
+
+
+
+<p class="wp-block-paragraph">And maybe that explains why I find this new generation of AI tools so interesting: I like working with people, learning, experimenting, and solving problems. AI gives us another very powerful tool for doing exactly that.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Can you share a good story about how GitHub Copilot has helped you recently?</strong></p>
+
+
+
+<p class="wp-block-paragraph">There are actually three very different examples that changed how I think about working with GitHub Copilot.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Let&rsquo;s start with the first one.</strong></p>
+
+
+
+<p class="wp-block-paragraph">One was a migration of around 900 teaching slides across 15 presentations from Reveal.js to Marp. These were not simple slides. Many contain code, animations, and even interactive examples where I can change JavaScript live while teaching. More importantly, the presentations had already been battle-tested with students. The flow worked. Losing one small piece could break the story I use in the classroom.</p>
+
+
+
+<p class="wp-block-paragraph">Doing that migration manually would probably have taken me a week or more&mdash;and realistically, I might simply have avoided doing it because it was such tedious work.</p>
+
+
+
+<p class="wp-block-paragraph">With Copilot, I approached it differently. We first analysed the existing material, defined the target, created a migration plan, established constraints, provided examples, and defined what had to remain intact. Then we worked from the big structural changes down into the details.</p>
+
+
+
+<p class="wp-block-paragraph">The really important part was verification.</p>
+
+
+
+<p class="wp-block-paragraph">We generated screenshots of the Reveal.js and Marp versions and compared them visually and algorithmically. We built a small application where I could run both slide decks next to each other to verify animations manually. We even compared the generated PDFs.</p>
+
+
+
+<p class="wp-block-paragraph">That meant the agent did not just say, &ldquo;Migration complete.&rdquo; We had evidence.</p>
+
+
+
+<p class="wp-block-paragraph">The entire migration took me roughly eight to ten hours. I still owned the content, the teaching intent, and every meaningful change. Copilot could fix a typo automatically, but if content, versions, dates or meaning changed, that was something we discussed.</p>
+
+
+
+<p class="wp-block-paragraph">For me, that experience reinforced an important principle: <em>delegate execution, not responsibility.</em> I own the result.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Can you share the second example?</strong></p>
+
+
+
+<p class="wp-block-paragraph">A second example came from building a terminal UI application with Tamboui. It initially worked perfectly in Linux under WSL, and I had completely forgotten that somebody might run it directly in Windows CMD or PowerShell.</p>
+
+
+
+<p class="wp-block-paragraph">And then a real user did.</p>
+
+
+
+<p class="wp-block-paragraph">They discovered that the Enter key was simply ignored in some forms. That is another principle I strongly believe in: ship software early, because you learn from how people actually use it.</p>
+
+
+
+<p class="wp-block-paragraph">We used Copilot to turn that feedback into reproducible UI tests. On Linux, Copilot was navigating the application with tmux. Through working with it, I learned about psmux and could execute similar flows in PowerShell. We reproduced the problem, created a local fix, traced the real problem into Tamboui, and I submitted the upstream fix, which was merged.</p>
+
+
+
+<p class="wp-block-paragraph">During this work, the test descriptions themselves became too large for the available context. So I asked Copilot to help me redesign the way the tests were represented. Instead of verbose tables containing identifiers, names and repeated descriptions, it proposed a much more compact arrow notation: step &rarr; step &rarr; input, with additional information only where it was critical.</p>
+
+
+
+<p class="wp-block-paragraph">That surprised me. We were not just using AI to execute information; we were working together on <em>how information should be represented for execution</em>. It did not have to be maximally human-friendly. It had to preserve the semantics while being efficient for the agent.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>How about the third example?</strong></p>
+
+
+
+<p class="wp-block-paragraph">The third example is completely different again.</p>
+
+
+
+<p class="wp-block-paragraph">Someone close to me needed to practise mathematics, and I thought: why don&rsquo;t we build a small learning app?</p>
+
+
+
+<p class="wp-block-paragraph">It covers addition, subtraction, multiplication, division and division with remainder for grades one through four. But I did not want to build another simple quiz application. Together with Copilot, I researched learning approaches such as spaced repetition, immediate feedback, adaptive difficulty, motivation, cooperative learning and gamification without dark patterns.</p>
+
+
+
+<p class="wp-block-paragraph">Interestingly, during that research Copilot challenged one of my original assumptions. I initially wanted the application to be generic for children everywhere. The research led us toward looking at the actual school curriculum instead. I realised that the order in which topics are introduced, the operations and number ranges differ enough that making it &ldquo;universal&rdquo; immediately was unnecessary.</p>
+
+
+
+<p class="wp-block-paragraph">So we focused on Switzerland first and aligned the progression accordingly. Because Switzerland is multilingual, the application is available in German, French, Italian and English.</p>
+
+
+
+<p class="wp-block-paragraph">It also has cooperative and competitive two-player modes, and when someone gets an answer wrong, the application explains one way to solve it and brings similar questions back through spaced repetition.</p>
+
+
+
+<p class="wp-block-paragraph">I deliberately chose an architecture without a backend. There is no reason for me to collect children&rsquo;s personal data on a server, so the data stays on the device and the application can simply be hosted on GitHub Pages.</p>
+
+
+
+<p class="wp-block-paragraph">What started as a small experiment is now being used and shared among friends. It accidentally became a little product.</p>
+
+
+
+<p class="wp-block-paragraph">That experience showed me another side of Copilot: don&rsquo;t only use it to implement your solution. Use it as a sparring partner to <em>expand and challenge the solution space before you start building</em>.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>How do you typically use Copilot?</strong></p>
+
+
+
+<p class="wp-block-paragraph">I actually don&rsquo;t use the classic Copilot autocomplete experience anymore.</p>
+
+
+
+<p class="wp-block-paragraph">My work has moved almost completely toward agentic workflows.</p>
+
+
+
+<p class="wp-block-paragraph">I use VS Code when I need a tight visual feedback loop&mdash;when I want to look closely at documents, code, presentations or intermediate results and adapt the process as I go.</p>
+
+
+
+<p class="wp-block-paragraph">For larger execution-oriented tasks, I often work with the coding agent from the terminal. There I am more comfortable delegating a piece of work, letting it execute, and then inspecting the complete result. The interface I choose depends mostly on the feedback loop I need.</p>
+
+
+
+<p class="wp-block-paragraph">I also had a fascinating experience using the coding-agent workflow through GitHub while travelling to JavaLand. I had started exploring an idea for a Maven plugin that optimises which Spring Boot auto-configurations are loaded. During roughly a four-hour journey, I was steering the agent from my phone: giving it a task, reviewing what it had done, thinking about the next step, and sending the next instruction.</p>
+
+
+
+<p class="wp-block-paragraph">By the time I arrived, I had a working Maven plugin, a CI pipeline, performance tests against a sample application, and reports that could demonstrate whether the optimisation actually worked.</p>
+
+
+
+<p class="wp-block-paragraph">That was the first time I had worked that way, and I was amazed that it actually worked. I wasn&rsquo;t trying to write Java on my phone. I was <em>reviewing, deciding and steering while the agent executed</em>.</p>
+
+
+
+<p class="wp-block-paragraph">I also use MCP servers when they give me useful capabilities or context. For example, I have used Context7 for documentation, integrations with my Logseq knowledge base, and I have experimented with an MCP integration for Adobe Premiere Pro.</p>
+
+
+
+<p class="wp-block-paragraph">But I don&rsquo;t use MCP just because I can. If a good CLI exists, I often prefer the CLI because it feels more direct and faster to me.</p>
+
+
+
+<p class="wp-block-paragraph">The agent is also not a &ldquo;junior developer&rdquo; in my mental model. I think of it much more as a sparring partner. But just like anyone joining a project, it first needs to be brought up to speed.</p>
+
+
+
+<p class="wp-block-paragraph">Context is king.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Can you share some tips and best practices?</strong></p>
+
+
+
+<p class="wp-block-paragraph">The biggest thing I would recommend is: <em>stop one-shot prompting.</em></p>
+
+
+
+<p class="wp-block-paragraph">For anything non-trivial, I want to understand the problem before execution starts. Quite often I explicitly ask the agent to interview me first. The purpose of that interview is to uncover assumptions and expectations that are still implicit.</p>
+
+
+
+<p class="wp-block-paragraph">A good agent can execute the wrong idea incredibly quickly. That does not make the detour cheaper.</p>
+
+
+
+<p class="wp-block-paragraph">I experienced this myself while working on my Spring Boot auto-configuration optimiser. Initially I wanted to support both Spring Boot 3.5 and 4.x. There were architectural differences, so we implemented both approaches. Later I realised I no longer needed the 3.5 path and removing it was painful.</p>
+
+
+
+<p class="wp-block-paragraph">The lesson was simple: <em>detours are expensive. Get the requirements right before you accelerate.</em></p>
+
+
+
+<p class="wp-block-paragraph">Once the intent is clear, I want a plan. When I review that plan, four things matter especially to me: are assumptions visible, are verification gates defined, does the approach fit the architecture, and does it avoid unnecessary work?</p>
+
+
+
+<p class="wp-block-paragraph">The second principle is to define <em>task-specific verification gates.</em></p>
+
+
+
+<p class="wp-block-paragraph">&ldquo;Done&rdquo; should not mean that the model says it is done.</p>
+
+
+
+<p class="wp-block-paragraph">For a refactoring, the gates might include passing tests, proving that all intended files were handled, updating documentation and leaving no TODOs behind. For the slide migration, the gates included screenshots, visual diffs, animations, PDF output and content completeness.</p>
+
+
+
+<p class="wp-block-paragraph">The gates depend on the task. The principle does not: the agent should be able to provide evidence that the work satisfies the definition of done.</p>
+
+
+
+<p class="wp-block-paragraph">I recently came across a skill called <code>unlazy</code> that follows a similar idea: create explicit gates, work through them deliberately, and prove that they have been completed rather than taking shortcuts.</p>
+
+
+
+<p class="wp-block-paragraph">The third principle is to turn your lessons into <em>reusable skills</em>.</p>
+
+
+
+<p class="wp-block-paragraph">I have started writing and maintaining my own Agent Skills. When I learn something from an execution&mdash;perhaps the agent misunderstood a convention, a useful check was missing, or I found a better way to approach a task&mdash;I update the skill.</p>
+
+
+
+<p class="wp-block-paragraph">The next time I perform that task, the lesson is already there.</p>
+
+
+
+<p class="wp-block-paragraph">One example is a skill I call <code>maintainer-audit</code>, inspired by work in the open agent skills community. I use it across my own repositories. It checks and, where appropriate, fixes the things I expect a maintained project to have: repository documentation, CI pipelines, Dependabot configuration, CodeQL, consistent cleanup and other project standards.</p>
+
+
+
+<p class="wp-block-paragraph">The goal is not to generate another audit report for me to read. It brings the repository back toward the baseline I want automatically. That makes my projects more consistent and easier to maintain.</p>
+
+
+
+<p class="wp-block-paragraph">I think of these skills as <em>living engineering knowledge</em> rather than static prompts.</p>
+
+
+
+<p class="wp-block-paragraph">The fourth principle is to put deterministic engineering tools around the probabilistic model.</p>
+
+
+
+<p class="wp-block-paragraph">I have my own quality harness that wraps tools such as Checkstyle, PMD and Spring Modulith architecture checks and produces a consolidated report that the agent can consume. I can run that from hooks and let the agent iterate:</p>
+
+
+
+<p class="wp-block-paragraph">change &rarr; execute checks &rarr; read findings &rarr; fix &rarr; execute again.</p>
+
+
+
+<p class="wp-block-paragraph">It continues until there are no findings left.</p>
+
+
+
+<p class="wp-block-paragraph">That does not mean I stop looking at the software. I still run the application, interact with it and decide whether it behaves and looks the way I expect. Sometimes I deliberately implement feature by feature because the feedback loop is much tighter.</p>
+
+
+
+<p class="wp-block-paragraph">I learned that asking for everything at once because &ldquo;the AI can do it&rdquo; is usually a bad idea. Large, generic specifications create large, generic implementations&mdash;and cleaning them up afterwards can be harder than building smaller increments correctly.</p>
+
+
+
+<p class="wp-block-paragraph">More broadly, I think we developers need to talk much more about <em>how</em> we use these tools. Share the experiments that worked. Share the ones that didn&rsquo;t. Borrow ideas from each other and adapt them to your own context instead of looking for one universal AI development process.</p>
+
+
+
+<p class="wp-block-paragraph">That is also why I like the idea of AI as a sparring partner. On a Friday night, when I want to experiment with something and no human pair is available, I suddenly have somebody&mdash;or something&mdash;I can challenge an idea with, review an approach with, or use as a very sophisticated rubber duck.</p>
+
+
+
+<p class="wp-block-paragraph">But I still take those ideas back to real people. Human feedback, product understanding and real-world context remain essential.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>How do you think AI is changing our profession?</strong></p>
+
+
+
+<p class="wp-block-paragraph">I don&rsquo;t think software engineering students should primarily aspire to become code-producing machines. They need to become strong problem solvers. They need to understand users and stakeholders, discover the real problem behind a requirement, challenge assumptions, understand products and markets, make architectural trade-offs, think critically, work in a structured way and transfer useful solutions from one context into another.</p>
+
+
+
+<p class="wp-block-paragraph">The model is extraordinarily good at generating possibilities and executing things. But as a human, I usually know much more of the actual context&mdash;including the things nobody ever documented.</p>
+
+
+
+<p class="wp-block-paragraph">So I want to remain in charge of shaping the solution and let the agent take over more of the execution.</p>
+
+
+
+<p class="wp-block-paragraph">In that sense, I think <em>AI is putting the engineering back into software engineering</em>.</p>
+
+
+
+<p class="wp-block-paragraph">And I like that.</p>
+
+
+
+<h2 class="wp-block-heading" id="frank-delporte">Frank Delporte</h2>
+
+
+
+<p class="wp-block-paragraph">GitHub profile: <a href="https://github.com/FDelporte">@FDelporte</a></p>
+
+
+
+<p class="wp-block-paragraph"><strong>How did you get started in tech?</strong></p>
+
+
+
+<p class="wp-block-paragraph">I&rsquo;ve been fascinated by computers since I got a Commodore 64 when I was 11. Took some side steps into video production and television work after school but turned back into coding as that video needed to be put on DVD and the very first websites&hellip; Yes, I&rsquo;m that old ;-).</p>
+
+
+
+<p class="wp-block-paragraph"><strong>How has GitHub Copilot helped you recently?</strong></p>
+
+
+
+<p class="wp-block-paragraph">It&rsquo;s a perfect companion to evaluate pull requests and investigate bug reports.</p>
+
+
+
+<p class="wp-block-paragraph">One remarkable story is about the <a href="https://www.pi4j.com/">Pi4J library</a> that lets you build Java applications to interact with electronic components on the Raspberry Pi. In February 2026, we released V4 which has a new plugin using the Foreign Function &amp; Memory API. We tested it thoroughly before releasing, but still, shortly after the release someone <a href="https://github.com/Pi4J/pi4j/issues/622">reported that using 5 input buttons doesn&rsquo;t work as expected</a>. Pushing one of the first four configured buttons triggers a code execution as expected, while nothing happens with the fifth button.</p>
+
+
+
+<p class="wp-block-paragraph">This is the kind of report you don&rsquo;t want to get. Nothing was visibly broken. No exception, no warning in the logs, the fifth button was simply silent. And it got worse: with the older gpiod plugin, the exact same hardware and the exact same application, worked fine. So the problem was in our new FFM code, which sits on top of the Linux kernel&rsquo;s GPIO character device and talks to it through native calls. That is not the part of the codebase where you expect to find a quick answer.</p>
+
+
+
+<p class="wp-block-paragraph">So I assigned the issue to the Copilot coding agent and gave it two file paths as a starting point, the provider class and FFMDigitalInput. About half an hour later there was a pull request, with an explanation I really did not expect.</p>
+
+
+
+<p class="wp-block-paragraph">Each input runs an event watcher that blocks in a native <code>poll()</code> call, waiting for the kernel to report a change on its GPIO line. Those watchers ran in virtual threads. And a virtual thread that blocks inside a native call cannot be unmounted from its carrier thread. It stays pinned there for the whole duration of the call. A Raspberry Pi 4 has four cores, so the virtual thread scheduler has four carrier threads. Register four inputs, and all four carriers are parked in <code>poll()</code> forever. The fifth watcher is created, but is never scheduled. That is exactly the bug that was reported. Not &ldquo;events are flaky&rdquo;, but &ldquo;the fifth one does nothing.&rdquo;</p>
+
+
+
+<p class="wp-block-paragraph">What I liked most was not the diff, it was the conversation that followed in the review. I left a comment asking Copilot to explain this in more detail:</p>
+
+
+
+<p class="wp-block-paragraph"><em>I thought the goal of virtual threads was exactly to step away from the platform thread limit? So how is this a problem that four virtual threads block the four threads on a four-core processor like the Raspberry Pi?</em></p>
+
+
+
+<p class="wp-block-paragraph">Check the <a href="https://github.com/Pi4J/pi4j/pull/623">pull request for the full conversation</a>. Copilot was able to link the use of the Raspberry Pi which has four CPU cores with the reported problem. It was able to propose a simple fix for the problem, plus some extra improvements it found during its investigation.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Can you share some tips and best practices?</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Tell it where to look:</strong> For the Pi4J issue #622, I added two file paths. That is a tiny bit of effort that removes a huge amount of searching in a large codebase. You usually have a hunch about the neighbourhood even when you have no idea about the bug. Give it to the tool so it doesn&rsquo;t need to investigate the complete code.</li>
+
+
+
+<li><strong>Ask for proof and tests:</strong> &ldquo;Add a unit test to validate the change&rdquo; is something I ask a lot these days. Well, asked, because it has now become a rule in my instructions file. It also prevents cases where the diagnosis was wrong, because the test won&rsquo;t fail on the old code.</li>
+
+
+
+<li><strong>Ask why:</strong> If you don&rsquo;t understand a fix, say so and ask. The explanation is a deliverable too and should be added into your project documentation or inside the ticket or pull request. It teaches everyone who reads the info later. For example, this also triggered more questions within the Pi4J team about virtual thread pinning on native calls.</li>
+
+
+
+<li><strong>Stay in control:</strong> All of these pull requests in Pi4J were reviewed and approved by maintainers before they went in. That&rsquo;s the model that works best in this project: the agent does the investigation, the humans stay responsible for what ships. But also for my other projects I always do a review of the code that was generated by the tool. I always want to keep code readable and maintainable. Too often, a tool creates duplicate methods or recreates something which is already available in another place and should be combined. That&rsquo;s your responsibility. You can go very fast these days with AI-assisted coding, which also means you can very fast create a mess. Don&rsquo;t do that, keep your code manageable, your colleagues and future-self will thank you if they have to investigate bugs or make improvements later.</li>
+</ul>
+
+
+
+<div class="wp-block-group post-content-cta has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+<p class="wp-block-paragraph"><a href="https://github.com/features/copilot">Get started with GitHub Copilot &gt;</a></p>
+</div>
+</body></html>
+<p>The post <a href="https://github.blog/ai-and-ml/github-copilot/how-3-java-champions-are-using-github-copilot-for-increased-productivity/">How 3 Java Champions are using GitHub Copilot for increased productivity</a> appeared first on <a href="https://github.blog">The GitHub Blog</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">99538</post-id>	</item>
+		<item>
+		<title>How to continue a GitHub Copilot app session in VS Code</title>
+		<link>https://github.blog/ai-and-ml/github-copilot/how-to-continue-a-github-copilot-app-session-in-vs-code/</link>
+		
+		<dc:creator><![CDATA[Kayla Cinnamon]]></dc:creator>
+		<pubDate>Mon, 19 Oct 2026 18:47:22 +0000</pubDate>
+				<category><![CDATA[AI & ML]]></category>
+		<category><![CDATA[GitHub Copilot]]></category>
+		<category><![CDATA[GitHub Copilot app]]></category>
+		<category><![CDATA[GitHub Copilot app for Beginners]]></category>
+		<guid isPermaLink="false">https://github.blog/?p=99556</guid>
+
+					<description><![CDATA[<p>Learn how to move an agent session from the GitHub Copilot app into VS Code without losing the conversation, code changes, or working context.</p>
+<p>The post <a href="https://github.blog/ai-and-ml/github-copilot/how-to-continue-a-github-copilot-app-session-in-vs-code/">How to continue a GitHub Copilot app session in VS Code</a> appeared first on <a href="https://github.blog">The GitHub Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><p class="wp-block-paragraph">The agent has finished the bulk of your change. Now you want to inspect one implementation detail, adjust a few lines by hand, and run the project locally before you ship it.</p>
+
+
+
+<p class="wp-block-paragraph">But the work is sitting in the <a href="https://github.com/features/ai/github-app">GitHub Copilot app</a>&hellip; and your editor is where you review diffs, debug code, and make final adjustments. Do you have to choose between staying in the session and starting over in Visual Studio Code?</p>
+
+
+
+<p class="wp-block-paragraph">You don&rsquo;t. You can open the Copilot app session directly in VS Code and continue with its conversation, code changes, and working context intact. That means Copilot can handle the repetitive or time-consuming work, then hand control back to you for closer review, hands-on editing, and local testing.</p>
+
+
+
+<p class="wp-block-paragraph">In this tutorial, you&rsquo;ll learn how to:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Open a Copilot app session in VS Code.</li>
+
+
+
+<li>Review the agent&rsquo;s changes line by line.</li>
+
+
+
+<li>Continue the same conversation from your editor.</li>
+
+
+
+<li>Modify and test the code locally.</li>
+
+
+
+<li>Push your updates to the pull request associated with the session.</li>
+</ul>
+
+
+
+<aside data-color-mode="light" data-dark-theme="dark" data-light-theme="light_dimmed" class="wp-block-group post-aside--large p-4 p-md-6 is-style-light-dimmed has-global-padding is-layout-constrained wp-block-group-is-layout-constrained is-style-light-dimmed--2" style="border-top-width:4px">
+<h2 id="h-prerequisites-nbsp" class="wp-block-heading">Prerequisites&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">Before you begin, make sure you have:&nbsp;</p>
+
+
+
+<ul class="wp-block-list">
+<li>The GitHub Copilot app installed and signed in.&nbsp;</li>
+
+
+
+<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code installed</a> and connected to the same GitHub account.&nbsp;</li>
+
+
+
+<li>A Copilot app session with code changes you want to review or continue.&nbsp;</li>
+
+
+
+<li>Permission to work in and push changes to the session&rsquo;s repository.&nbsp;</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">This tutorial assumes you are already comfortable navigating VS Code, running commands in its integrated terminal, and working with Git branches and pull requests.</p>
+</aside>
+
+
+
+<h2 id="h-1-start-with-a-session-in-the-copilot-app" class="wp-block-heading">1. Start with a session in the Copilot app</h2>
+
+
+
+<p class="wp-block-paragraph">Open the session you want to continue. Before handing it off, take a moment to review the task and the work Copilot completed.</p>
+
+
+
+<p class="wp-block-paragraph">A session contains more than a collection of modified files. It also records the task, the plan, and the conversation that produced those changes. That context is important when you want to understand why Copilot chose a particular implementation or ask it to revise part of the work.</p>
+
+
+
+<p class="wp-block-paragraph">You do not need to summarize that history or copy it into a new chat before moving to VS Code.</p>
+
+
+
+<h2 id="h-2-open-the-session-in-vs-code" class="wp-block-heading">2. Open the session in VS Code</h2>
+
+
+
+<p class="wp-block-paragraph">From the session, select <strong>Open in VS Code</strong>. If the app presents more than one supported editor or VS Code installation, choose the one you want to use.</p>
+
+
+
+<p class="wp-block-paragraph">VS Code opens the project using the worktree associated with the session. It also displays the existing session in the Copilot sidebar.</p>
+
+
+
+<p class="wp-block-paragraph">That gives you three connected pieces of the original work:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>The session context:</strong> The task, plan, and conversation remain available.</li>
+
+
+
+<li><strong>The diff:</strong> The files and lines changed by the agent are ready for review.</li>
+
+
+
+<li><strong>The worktree:</strong> VS Code opens the same isolated working tree the session used.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">You are continuing the existing session, not reconstructing it in a new editor window.</p>
+
+
+
+<h2 id="h-3-review-the-agent-s-changes" class="wp-block-heading">3. Review the agent&rsquo;s changes</h2>
+
+
+
+<p class="wp-block-paragraph">Before editing, inspect the diff in VS Code. Open the Source Control view to see the changed files, then select a file to review its changes line by line.</p>
+
+
+
+<p class="wp-block-paragraph">Review the implementation as you would any other proposed change. In particular, check that:</p>
+
+
+
+<ul class="wp-block-list">
+<li>The code solves the requested problem.</li>
+
+
+
+<li>The implementation follows the repository&rsquo;s conventions.</li>
+
+
+
+<li>Error states and edge cases are handled appropriately.</li>
+
+
+
+<li>Tests cover the behavior that changed.</li>
+
+
+
+<li>No unrelated files or behaviors were modified.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">The preserved conversation can help explain how Copilot arrived at the implementation. If something is unclear, continue prompting Copilot in the sidebar. For example:</p>
+
+
+<div class="wp-block-code-wrapper">
+<pre class="wp-block-code language-plaintext"><code>Explain why you changed this function instead of adding a new helper. Identify any behavior this could affect.</code></pre>
+<clipboard-copy aria-label="Copy" class="code-copy-btn" data-copy-feedback="Copied!" value="Explain why you changed this function instead of adding a new helper. Identify any behavior this could affect." tabindex="0" role="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" version="1.1" width="16" class="octicon octicon-copy js-clipboard-copy-icon"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg><svg aria-hidden="true" height="16" viewbox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check js-clipboard-check-icon"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg></clipboard-copy></div>
+
+
+<p class="wp-block-paragraph">You can also ask Copilot to make another change. Because the session and worktree remain connected, you do not have to describe the task from the beginning.</p>
+
+
+
+<h2 id="h-4-make-a-hands-on-edit" class="wp-block-heading">4. Make a hands-on edit</h2>
+
+
+
+<p class="wp-block-paragraph">Once you understand the proposed changes, edit any file directly in VS Code.</p>
+
+
+
+<p class="wp-block-paragraph">This is useful for adjustments that are faster or easier to make by hand, such as:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Refining a label or error message.</li>
+
+
+
+<li>Renaming a variable for clarity.</li>
+
+
+
+<li>Adjusting layout or styling.</li>
+
+
+
+<li>Adding a missing test case.</li>
+
+
+
+<li>Applying a repository-specific convention.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">You are editing the session&rsquo;s existing worktree, so your manual changes build directly on the agent&rsquo;s work. You do not need to copy files between directories or manually re-create the branch.</p>
+
+
+
+<h2 id="h-5-run-and-verify-the-project-locally" class="wp-block-heading">5. Run and verify the project locally</h2>
+
+
+
+<p class="wp-block-paragraph">Use the VS Code integrated terminal to run the project&rsquo;s normal validation workflow. The exact commands depend on the repository, but some web app examples may include:</p>
+
+
+
+<ul class="wp-block-list">
+<li><code>npm install</code></li>
+
+
+
+<li><code>npm test</code></li>
+
+
+
+<li><code>npm run lint</code></li>
+
+
+
+<li><code>npm run dev</code></li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">Treat agent-generated changes the same way you would treat code written by a person: run the relevant tests, inspect failures, and verify the behavior yourself.</p>
+
+
+
+<p class="wp-block-paragraph">If the development server prints a localhost URL, open it to test the change in a browser. When supported by your VS Code setup, you can open the URL in VS Code&rsquo;s integrated browser and inspect the result without leaving the editor.</p>
+
+
+
+<p class="wp-block-paragraph">For a user-interface change, verify both the requested behavior and nearby states. For example, check the modified component at different viewport sizes and confirm that loading, empty, and error states still work.</p>
+
+
+
+<h2 id="h-6-continue-with-copilot-or-keep-editing-yourself" class="wp-block-heading">6. Continue with Copilot or keep editing yourself</h2>
+
+
+
+<p class="wp-block-paragraph">At any point, you can choose the interaction that best fits the next step:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Prompt Copilot when the change requires repository-wide analysis or repetitive edits.</li>
+
+
+
+<li>Edit directly when you know the exact change you want.</li>
+
+
+
+<li>Use both approaches iteratively as you test and refine the implementation.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">For example, after making a manual UI adjustment, you might ask Copilot:</p>
+
+
+
+<p class="wp-block-paragraph">Add a test for the updated label and run the relevant test file. Do not modify unrelated components.</p>
+
+
+
+<p class="wp-block-paragraph">Because you are still in the original session, Copilot retains the context needed to interpret &ldquo;the updated label.&rdquo;</p>
+
+
+
+<h2 id="h-7-commit-and-push-the-finished-changes" class="wp-block-heading">7. Commit and push the finished changes</h2>
+
+
+
+<p class="wp-block-paragraph">When the implementation is ready, review the final diff one more time. Then commit and push the changes using the Source Control view or the integrated terminal:</p>
+
+
+
+<ul class="wp-block-list">
+<li><code>git status</code></li>
+
+
+
+<li><code>git add</code></li>
+
+
+
+<li><code>git commit -m "Refine session changes"</code></li>
+
+
+
+<li><code>git push</code></li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">Use your repository&rsquo;s normal branch, commit, review, and approval practices. Because VS Code opened the worktree and branch associated with the session, pushing the branch updates the pull request already tracking that work.</p>
+
+
+
+<p class="wp-block-paragraph">There is no need to copy the finished files into another checkout or reconnect the work to the pull request manually.</p>
+
+
+
+<h2 id="h-a-continuous-workflow-from-agent-to-editor" class="wp-block-heading">A continuous workflow from agent to editor</h2>
+
+
+
+<p class="wp-block-paragraph">Opening a Copilot app session in VS Code gives you a clean division of labor without splitting the work itself. Copilot can take on a larger or repetitive implementation, while you can move into the editor for detailed review, targeted changes, local testing, and final polish.</p>
+
+
+
+<p class="wp-block-paragraph">The session, diff, and worktree move with you. Start by directing the work in the Copilot app, switch to VS Code whenever you want hands-on control, and push the finished result through the same pull request workflow.</p>
+
+
+
+<div class="wp-block-group post-content-cta has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+<p class="wp-block-paragraph">Ready to try it? <a href="https://gh.io/app">Download the GitHub Copilot app</a>, start a session, and open it in VS Code when you are ready to continue coding.</p>
+</div>
+</body></html>
+<p>The post <a href="https://github.blog/ai-and-ml/github-copilot/how-to-continue-a-github-copilot-app-session-in-vs-code/">How to continue a GitHub Copilot app session in VS Code</a> appeared first on <a href="https://github.blog">The GitHub Blog</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">99556</post-id>	</item>
+		<item>
+		<title>The next developer interface is ambient intelligence</title>
+		<link>https://github.blog/news-insights/company-news/the-next-developer-interface-is-ambient-intelligence/</link>
+		
+		<dc:creator><![CDATA[Martin Woodward]]></dc:creator>
+		<pubDate>Thu, 15 Oct 2026 19:39:27 +0000</pubDate>
+				<category><![CDATA[Company news]]></category>
+		<category><![CDATA[News & insights]]></category>
+		<category><![CDATA[GitHub Copilot]]></category>
+		<category><![CDATA[Logitech MX Keypad]]></category>
+		<guid isPermaLink="false">https://github.blog/?p=99541</guid>
+
+					<description><![CDATA[<p>AI, agents, voice, and physical controls are shifting software development from operating tools to expressing intent—and helping developers stay focused on building.</p>
+<p>The post <a href="https://github.blog/news-insights/company-news/the-next-developer-interface-is-ambient-intelligence/">The next developer interface is ambient intelligence</a> appeared first on <a href="https://github.blog">The GitHub Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><p class="wp-block-paragraph">For most of my career, building software started with the same setup: keyboard, mouse, editor, terminal, browser, and an impressive number of tabs I was definitely going to look at later. The tools changed, but the relationship did not. Like most developers, I learned commands, memorized shortcuts, and adapted my thinking to the machine.</p>
+
+
+
+<p class="wp-block-paragraph">AI is changing that relationship and not because I can prompt my way to some workable code. It&rsquo;s more because the system behind it can understand a repository, choose the right model, plan work, use tools, edit files, run commands, inspect failures, and keep going within boundaries the developer controls.</p>
+
+
+
+<p class="wp-block-paragraph">We&rsquo;ve made it possible for a developer to describe an outcome, and GitHub Copilot can gather repository context, inspect symbols and dependencies, edit files, run tests, and revise the implementation. In the IDE, agent mode keeps that loop interactive. GitHub Copilot coding agent can take an issue into an isolated GitHub Actions-powered environment and return a pull request for review. This is not just faster coding. It is the shift from issuing commands to making intent executable. The developer still owns the outcome, but the work looks subtly different.</p>
+
+
+
+<p class="wp-block-paragraph">AI-assisted development compresses that chain of events. We spend less time navigating tools and more time setting direction, supplying context, defining constraints, and reviewing evidence. The development workflow now is about understanding the structure of codebases, the customer, and what a good solution should feel like.</p>
+
+
+
+<p class="wp-block-paragraph">This makes developers&rsquo; jobs even more important, and their time more valuable. It makes judgment more valuable. It makes taste more valuable. An agent can generate three implementations before you finish your tea, but someone still has to decide whether the abstraction belongs, the migration is safe, the tests prove anything useful, and the result solves the problem.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>That is the most important change in the craft: the developer remains accountable for the outcome, even as more mechanics are delegated.</strong></p>
+
+
+
+<p class="wp-block-paragraph">So what does this mean for the emerging developer workflow? The goal is to embed AI into the workflow, not beside it. It&rsquo;s more of an ambient intelligence.</p>
+
+
+
+<p class="wp-block-paragraph">That requires portable context. MCP connects agents to tools and services; repository instructions and skills encode conventions; hooks enforce policy and validate output. Simpler interfaces need explicit context underneath.</p>
+
+
+
+<p class="wp-block-paragraph">I see three layers: modality captures intent; the harness plans and acts; the control plane lets developers inspect, redirect, and approve. The best products connect all three without surrendering control.</p>
+
+
+
+<p class="wp-block-paragraph">Together, they let developers move across text, voice, and physical controls without losing context.</p>
+
+
+
+<h2 id="h-why-physical-controls-are-interesting-again" class="wp-block-heading">Why physical controls are interesting again</h2>
+
+
+
+<p class="wp-block-paragraph">I, and many others in the maker community, have been experimenting with ambient control devices, from inexpensive hackable picture frames to ESP32 devices with screens attached. Agentic coding is past just a keyboard and a terminal into alternative interfaces.</p>
+
+
+
+<p class="wp-block-paragraph">Getting this kind of technology into everyone&rsquo;s hands is something that I&rsquo;m very passionate about and so over the past 18 months we&rsquo;ve been working with Logitech on their MX Keypad and how it can help this new way of working.</p>
+
+
+
+<p class="wp-block-paragraph">The Logitech MX Keypad turns familiar developer actions into programmable inputs to accelerate workflows that are ambient and contextual to the work devs are doing. In GitHub Copilot app, a key can submit a parameterized prompt, open or resume a Copilot session, invoke an IDE command, or trigger a multi-step sequence. The hardware earns its place only when that shortcut removes enough friction to keep you in the code, but still gives you control.</p>
+
+
+
+<p class="wp-block-paragraph">Physical controls work when an action repeats often enough that removing a few steps preserves concentration. Not every developer needs another device on the desk, and not every interruption deserves a key. However, with this experience the developer decides which actions earn that shortcut and when the keyboard, command palette, or voice is better. Maintaining flow is the key, and a good interface gives some of that attention back.</p>
+
+
+
+<p class="wp-block-paragraph">GUIs made software visual. Mouse made navigation easier. The web made it connected. Mobile made touch natural. Agents add intent and action. The interface now includes ambient control.</p>
+
+
+
+<h2 id="h-the-interface-moves-into-the-background" class="wp-block-heading">The interface moves into the background</h2>
+
+
+
+<p class="wp-block-paragraph">That is why GitHub worked with Logitech to integrate the GitHub Copilot app directly into the experience. Developers can run agentic workflows in control, map a repeated prompt, start or resume a session, and decide through real use whether a physical control helps you stay in flow.</p>
+
+
+
+<p class="wp-block-paragraph">This is still early, so the important questions are engineering questions. How much repository and organizational context should an agent retain? Which tool calls can run automatically? How should credentials, network access, and secrets be scoped? What evidence should accompany a change? How do multiple agents coordinate without duplicating work or creating conflicting pull requests? Products such as MX Keypad let us explore one practical part of that system: how developers invoke, steer, and resume agentic work without losing focus.</p>
+
+
+
+<p class="wp-block-paragraph">For decades, developers learned to speak computer: syntax, commands, APIs, shortcuts, and the occasional incantation copied from a seven-year-old issue comment. Now computers are getting better at meeting us halfway. The best interface will not have the most panels or AI buttons. It will understand enough context, preserve meaningful control, and get out of the way so we can build software that matters.</p>
+
+
+
+<p class="wp-block-paragraph">The goal is not to remove developers from the work. It is to remove friction around the work. Pairing MX Keypad with GitHub Copilot Pro+ gives developers a concrete experiment: choose one repeated interruption, map it to a control, and see whether it preserves focus.</p>
+
+
+
+<p class="wp-block-paragraph">If you want to try it, <a href="https://www.logitech.com/en-us/shop/p/mx-keypad.920-013889">you can do so here</a> and get three months of GitHub Copilot Pro+.</p>
+</body></html>
+<p>The post <a href="https://github.blog/news-insights/company-news/the-next-developer-interface-is-ambient-intelligence/">The next developer interface is ambient intelligence</a> appeared first on <a href="https://github.blog">The GitHub Blog</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">99541</post-id>	</item>
+		
+</channel>
+</rss>

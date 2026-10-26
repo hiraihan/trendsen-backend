@@ -1,0 +1,6 @@
+{
+  "items": [
+    {"id": "1", "url": "https://api.example.com/1", "title": "First", "text": "Body one", "author": "alice", "published_at": "2026-10-01T12:00:00Z", "metrics": {"score": 8}},
+    {"id": "2", "url": "https://api.example.com/2", "title": "Second", "author": "bob", "metrics": {"likes": 3}}
+  ]
+}

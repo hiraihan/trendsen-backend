@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+<title>Partially Identified Feed</title>
+<link>https://partial.example.test/</link>
+<description>A feed where some entries cannot be identified.</description>
+<item>
+  <title>Identified by guid</title>
+  <link>https://partial.example.test/identified</link>
+  <pubDate>Wed, 21 Oct 2026 02:04:15 +0000</pubDate>
+  <guid isPermaLink="false">urn:partial:1</guid>
+  <dc:creator>alice</dc:creator>
+  <description>Has a guid, so it is usable.</description>
+</item>
+<item>
+  <title>Identified only by link</title>
+  <link>https://partial.example.test/link-only</link>
+  <dc:creator>bob</dc:creator>
+  <description>No guid and no id; the link must be used as the identity.</description>
+</item>
+<item>
+  <title>No identity at all</title>
+  <dc:creator>carol</dc:creator>
+  <description>No guid, no id and no link: this entry cannot be deduplicated.</description>
+</item>
+<item>
+  <title>No publication date</title>
+  <link>https://partial.example.test/no-date</link>
+  <guid isPermaLink="false">urn:partial:no-date</guid>
+  <description>Some feeds omit pubDate; the item is still stored.</description>
+</item>
+</channel>
+</rss>

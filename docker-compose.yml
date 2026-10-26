@@ -1,0 +1,146 @@
+# TrendSentinel Scraper - local and single-host deployment stack.
+#
+# Only the API publishes a host port. The database and the worker stay on the internal
+# network, so neither is reachable from outside the compose network.
+#
+# Dev defaults are inlined; override any of them from a `.env` file next to this file.
+
+name: trendsentinel
+
+x-db-env: &db-env
+  POSTGRES_USER: ${POSTGRES_USER:-trendsentinel}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-trendsentinel}
+  POSTGRES_DB: ${POSTGRES_DB:-trendsentinel}
+
+# Every documented runtime setting is forwarded explicitly, with the same default as
+# `.env.example`. Compose does not pass the whole environment through, so a setting omitted
+# here silently keeps its in-code default no matter what `.env` says — which is how a
+# documented `SNAPSHOT_PURGE_ENABLED=true` once failed to reach the worker. `TEST_DATABASE_URL`
+# is deliberately absent: it is test-only and must not follow the stack into production.
+x-app-env: &app-env
+  DATABASE_URL: ${DATABASE_URL:-postgresql://trendsentinel:trendsentinel@db:5432/trendsentinel}
+  ADMIN_API_KEY: ${ADMIN_API_KEY:-}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  LOG_FORMAT: ${LOG_FORMAT:-json}
+  HTTP_TIMEOUT_SECONDS: ${HTTP_TIMEOUT_SECONDS:-10}
+  HTTP_MAX_RETRIES: ${HTTP_MAX_RETRIES:-3}
+  MAX_RESPONSE_BYTES: ${MAX_RESPONSE_BYTES:-5000000}
+  MAX_CONCURRENCY: ${MAX_CONCURRENCY:-10}
+  MAX_ITEMS_PER_RUN: ${MAX_ITEMS_PER_RUN:-100}
+  MAX_TEXT_CHARS: ${MAX_TEXT_CHARS:-2000}
+  USER_AGENT_CONTACT: ${USER_AGENT_CONTACT:-}
+  COLLECT_INTERVAL_MINUTES: ${COLLECT_INTERVAL_MINUTES:-30}
+  PENDING_POLL_SECONDS: ${PENDING_POLL_SECONDS:-10}
+  STALE_RUN_MINUTES: ${STALE_RUN_MINUTES:-30}
+  SOURCE_RELOAD_SECONDS: ${SOURCE_RELOAD_SECONDS:-60}
+  SNAPSHOT_RETENTION_DAYS: ${SNAPSHOT_RETENTION_DAYS:-90}
+  SNAPSHOT_PURGE_ENABLED: ${SNAPSHOT_PURGE_ENABLED:-false}
+  RUN_MANUAL_INLINE: ${RUN_MANUAL_INLINE:-false}
+  ALLOWED_HTML_DOMAINS: ${ALLOWED_HTML_DOMAINS:-}
+  CORS_ORIGINS: ${CORS_ORIGINS:-}
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment: *db-env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      # Bound to loopback only: never expose the database on the host network.
+      # The host port defaults to 55432 so compose does not collide with a PostgreSQL
+      # instance already running on this machine. Override with POSTGRES_PORT.
+      - "127.0.0.1:${POSTGRES_PORT:-55432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    restart: unless-stopped
+
+  # One-shot schema migration. Runs before the API or worker start, so neither can race
+  # the schema and a failing migration blocks startup loudly.
+  migrate:
+    build:
+      context: .
+      args:
+        UV_DEFAULT_INDEX: ${UV_DEFAULT_INDEX:-}
+    command: ["alembic", "upgrade", "head"]
+    environment: *app-env
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: .
+      args:
+        UV_DEFAULT_INDEX: ${UV_DEFAULT_INDEX:-}
+    command:
+      - uvicorn
+      - trendsentinel.main:app
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8000"
+    environment: *app-env
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          python -c "import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8000/health').read()"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  # The scheduler lives in its own process so that scaling `api` cannot duplicate jobs.
+  worker:
+    build:
+      context: .
+      args:
+        UV_DEFAULT_INDEX: ${UV_DEFAULT_INDEX:-}
+    command: ["python", "-m", "trendsentinel.worker"]
+    environment: *app-env
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  # Self-hosted RSSHub (free X access). Runs at its own host, not on the compose
+  # network, because SSRF protection blocks private networks; expose it at a public
+  # hostname (e.g. rsshub.example.com) and point the X `rss` source there.
+  rsshub:
+    image: diygod/rsshub:latest
+    environment:
+      NODE_ENV: production
+      RSSHUB_PORT: ${RSSHUB_PORT:-1200}
+      # X route config. Generate consumer key/secret + auth token in the X developer
+      # console (free, no paid tier) and set them in `.env`.
+      TWITTER_AUTH_TOKEN: ${TWITTER_AUTH_TOKEN:-}
+      TWITTER_CONSUMER_KEY: ${TWITTER_CONSUMER_KEY:-}
+      TWITTER_CONSUMER_SECRET: ${TWITTER_CONSUMER_SECRET:-}
+    ports:
+      - "${RSSHUB_PORT:-1200}:1200"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:1200/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  db-data:

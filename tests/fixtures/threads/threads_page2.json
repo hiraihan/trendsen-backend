@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": "17923800000000003",
+      "text": "Third post, ends the paging.",
+      "timestamp": "2026-10-23T10:00:00+0000",
+      "permalink": "https://www.threads.net/@trendsentinel_ops/post/third",
+      "media_type": "TEXT_POST"
+    }
+  ],
+  "paging": {
+    "cursors": {
+      "after": "pagination-cursor-page-3"
+    }
+  }
+}

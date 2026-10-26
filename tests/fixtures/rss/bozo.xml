@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>Broken Feed</title>
+<link>https://broken.example.test/</link>
+<description>Truncated markup, as a flaky feed server might return.</description>
+<item>
+<title>An entry that was cut off mid

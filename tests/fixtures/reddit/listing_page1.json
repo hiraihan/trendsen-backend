@@ -1,0 +1,48 @@
+{
+  "kind": "Listing",
+  "data": {
+    "after": "t3_def456",
+    "dist": 25,
+    "children": [
+      {
+        "kind": "t3",
+        "data": {
+          "subreddit": "technology",
+          "title": "Some post title",
+          "selftext": "A body paragraph.\n\nA second one.",
+          "author": "someuser",
+          "created_utc": 1761213600.0,
+          "id": "abc123",
+          "name": "t3_abc123",
+          "permalink": "/r/technology/comments/abc123/some_post_title/",
+          "score": 42,
+          "num_comments": 7,
+          "upvote_ratio": 0.95,
+          "stickied": false,
+          "over_18": false,
+          "url": "https://www.reddit.com/r/technology/comments/abc123/some_post_title/"
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "subreddit": "technology",
+          "title": "A link post with no body",
+          "selftext": "",
+          "author": "[deleted]",
+          "created_utc": 1761210000.0,
+          "id": "def456",
+          "name": "t3_def456",
+          "permalink": "/r/technology/comments/def456/a_link_post/",
+          "score": 0,
+          "num_comments": 0,
+          "upvote_ratio": 1.0,
+          "stickied": false,
+          "over_18": false,
+          "url": "https://example.com/article"
+        }
+      }
+    ],
+    "before": null
+  }
+}

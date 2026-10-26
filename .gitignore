@@ -1,0 +1,60 @@
+# ---------------------------------------------------------------------------
+# Secrets and local state
+# `.env` holds real local values. `.env.example` is the tracked template and is
+# deliberately re-included so a fresh clone has every documented variable to fill in.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---------------------------------------------------------------------------
+# Build output and tooling artifacts — all regenerable, none of them source.
+# The tracked/ignored sets are recorded in docs/repository.md.
+# ---------------------------------------------------------------------------
+build/
+dist/
+*.whl
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------------------------------------------------------------------------
+# Editors and OS
+# ---------------------------------------------------------------------------
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# ---------------------------------------------------------------------------
+# Documentation tree — all of docs/ stays local (operator decision 2026-10-26).
+# Tickets, ADRs, spec, verification and the source runbooks are project working
+# notes, not shipped product. Keep the repo to the core system only.
+# ---------------------------------------------------------------------------
+docs/
+
+# ---------------------------------------------------------------------------
+# Agent configuration — dev-tool scaffolds that must never enter the repo.
+# ---------------------------------------------------------------------------
+AGENTS.md
+agents.md
+CLAUDE.md
+.claude/
+.cursor/

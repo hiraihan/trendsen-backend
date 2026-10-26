@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "id": "17923800000000001",
+      "text": "First post, text only.",
+      "timestamp": "2026-10-23T12:00:00+0000",
+      "permalink": "https://www.threads.net/@trendsentinel_ops/post/first",
+      "media_type": "TEXT_POST"
+    },
+    {
+      "id": "17923800000000002",
+      "text": "Second post, media only, no permalink yet.",
+      "timestamp": "2026-10-23T11:30:00+0000",
+      "media_type": "IMAGE"
+    }
+  ],
+  "paging": {
+    "cursors": {
+      "after": "pagination-cursor-page-2"
+    },
+    "next": "https://graph.threads.net/v1.0/me/threads?after=pagination-cursor-page-2&access_token=redacted"
+  }
+}

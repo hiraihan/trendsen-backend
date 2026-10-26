@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": "1760000000000000001",
+      "text": "Shipping the trend detection rewrite today.",
+      "author_id": "1769999999999999666",
+      "created_at": "2026-10-23T12:00:00.000Z",
+      "public_metrics": {
+        "retweet_count": 3,
+        "reply_count": 2,
+        "like_count": 40,
+        "quote_count": 1,
+        "impression_count": 5123
+      }
+    },
+    {
+      "id": "1760000000000000002",
+      "text": "A second post whose author is not in includes.",
+      "author_id": "1769999999999999667",
+      "created_at": "2026-10-23T11:30:00.000Z",
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 0,
+        "quote_count": 0
+      }
+    }
+  ],
+  "includes": {
+    "users": [
+      {
+        "id": "1769999999999999666",
+        "username": "trend_sentinel",
+        "name": "TrendSentinel"
+      }
+    ]
+  },
+  "meta": {
+    "newest_id": "1760000000000000001",
+    "oldest_id": "1760000000000000002",
+    "result_count": 2,
+    "next_token": "pagination-token-page-2"
+  }
+}

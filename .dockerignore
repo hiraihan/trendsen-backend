@@ -1,0 +1,19 @@
+# Build inputs the runtime never needs.
+.git
+.gitignore
+.venv
+.env
+.env.*
+!.env.example
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.coverage
+htmlcov
+docs
+tests
+# `README.md` is required by the build (it is declared as the package readme), so it is not
+# excluded here.
+Dockerfile
+docker-compose.yml
+.dockerignore

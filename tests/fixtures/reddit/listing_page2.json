@@ -1,0 +1,29 @@
+{
+  "kind": "Listing",
+  "data": {
+    "after": null,
+    "dist": 1,
+    "children": [
+      {
+        "kind": "t3",
+        "data": {
+          "subreddit": "technology",
+          "title": "Third page post",
+          "selftext": "",
+          "author": "anotheruser",
+          "created_utc": 1761206400.0,
+          "id": "ghi789",
+          "name": "t3_ghi789",
+          "permalink": "/r/technology/comments/ghi789/third_page_post/",
+          "score": 5,
+          "num_comments": 1,
+          "upvote_ratio": 0.8,
+          "stickied": false,
+          "over_18": false,
+          "url": "https://example.org/other"
+        }
+      }
+    ],
+    "before": null
+  }
+}
