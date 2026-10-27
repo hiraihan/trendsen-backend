@@ -45,12 +45,13 @@ _UPSERT = """
     INSERT INTO collected_items (
         source_id, external_id, url, title, text, author,
         published_at, metadata, captured_at, last_seen_at,
-        language, content_type, author_url, thumbnail_url
+        language, content_type, author_url, thumbnail_url, content_fingerprint
     )
     VALUES (
         %(source_id)s, %(external_id)s, %(url)s, %(title)s, %(text)s, %(author)s,
         %(published_at)s, %(metadata)s, %(captured_at)s, %(captured_at)s,
-        %(language)s, %(content_type)s, %(author_url)s, %(thumbnail_url)s
+        %(language)s, %(content_type)s, %(author_url)s, %(thumbnail_url)s,
+        %(fingerprint)s
     )
     ON CONFLICT (source_id, external_id) DO UPDATE SET
         url          = COALESCE(EXCLUDED.url, collected_items.url),
@@ -63,6 +64,8 @@ _UPSERT = """
         content_type = COALESCE(EXCLUDED.content_type, collected_items.content_type),
         author_url   = COALESCE(EXCLUDED.author_url, collected_items.author_url),
         thumbnail_url = COALESCE(EXCLUDED.thumbnail_url, collected_items.thumbnail_url),
+        content_fingerprint =
+            COALESCE(EXCLUDED.content_fingerprint, collected_items.content_fingerprint),
         last_seen_at = EXCLUDED.last_seen_at
     RETURNING id, (xmax = 0) AS inserted
 """

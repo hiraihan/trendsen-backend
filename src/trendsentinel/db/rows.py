@@ -95,6 +95,12 @@ class ItemRow:
     content_type: str | None = None
     author_url: str | None = None
     thumbnail_url: str | None = None
+    canonical_url: str | None = None
+    content_fingerprint: str | None = None
+    category: str | None = None
+    subcategory: str | None = None
+    content_status: str | None = None
+    language_confidence: float | None = None
 
     @classmethod
     def from_row(cls, row: Mapping[str, Any]) -> Self:
@@ -118,6 +124,12 @@ class ItemRow:
             content_type=row.get("content_type"),
             author_url=row.get("author_url"),
             thumbnail_url=row.get("thumbnail_url"),
+            canonical_url=row.get("canonical_url"),
+            content_fingerprint=row.get("content_fingerprint"),
+            category=row.get("category"),
+            subcategory=row.get("subcategory"),
+            content_status=row.get("content_status"),
+            language_confidence=row.get("language_confidence"),
         )
 
 
@@ -204,6 +216,7 @@ class ItemUpsert:
     content_type: str | None = None
     author_url: str | None = None
     thumbnail_url: str | None = None
+    fingerprint: str | None = None
 
     def as_params(self) -> dict[str, Any]:
         """Return bound-parameter values matching the repository's SQL placeholders."""
@@ -221,6 +234,7 @@ class ItemUpsert:
             "content_type": self.content_type,
             "author_url": self.author_url,
             "thumbnail_url": self.thumbnail_url,
+            "fingerprint": self.fingerprint,
         }
 
 

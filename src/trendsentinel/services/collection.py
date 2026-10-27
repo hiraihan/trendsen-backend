@@ -22,6 +22,8 @@ collecting this source" is normal operation, not a failure.
 
 from __future__ import annotations
 
+import hashlib
+import re
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any, Final, Protocol
@@ -71,6 +73,25 @@ SKIPPED: Final[str] = "skipped"
 
 #: The two triggers the database accepts, kept here so a bad one fails before the insert.
 VALID_TRIGGERS: Final[frozenset[str]] = frozenset({"scheduler", "manual"})
+
+#: Collapses any run of whitespace to a single space for fingerprint normalization.
+_WS_RE: Final[re.Pattern[str]] = re.compile(r"\s+")
+
+
+def content_fingerprint(item: CollectedItem) -> str | None:
+    """Return a stable sha-256 over normalized content, or ``None`` when there is none.
+
+    The input is the lower-cased, whitespace-collapsed concatenation of title and text.
+    It deliberately excludes the source-specific ``external_id`` and ``url`` so the same
+    article found on two sources fingerprints identically — enabling cross-source
+    similarity/dedup without a dedicated NLP pass. It is a content digest, not a primary
+    key: collisions are merely unlikely, so it must never be used as identity.
+    """
+    blob = "\n".join(part for part in (item.title, item.text) if part)
+    normalized = blob.strip().lower()
+    if not normalized:
+        return None
+    return hashlib.sha256(_WS_RE.sub(" ", normalized).encode("utf-8")).hexdigest()
 
 
 class CollectorFactory(Protocol):
@@ -699,6 +720,7 @@ def _to_upsert(source_id: int, item: CollectedItem) -> ItemUpsert:
         content_type=item.content_type,
         author_url=item.author_url,
         thumbnail_url=item.thumbnail_url,
+        fingerprint=content_fingerprint(item),
     )
 
 

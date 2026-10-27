@@ -22,6 +22,10 @@ idempotently in PostgreSQL, and serve them over a REST API.
   write-only credential endpoint (no shell, no session scraping, no browser automation).
 - **Idempotent storage** — re-running updates the same row instead of duplicating it.
 - **Point-in-time metric snapshots** — a score is not a column; each run records a row.
+- **Deterministic CSV dataset exports** — `python -m trendsentinel.dataset_export` writes
+  nine CSV datasets (items, metric snapshots, sources, data-quality report, topics,
+  topic assignments, topic observations, entities, training labels) for
+  pandas/Colab/Jupyter; see `docs/data-schema.md`.
 - **Scheduler in its own process** — the API never schedules, the worker never serves HTTP.
 - **Secret-safe by default** — no credential is ever logged, echoed, or committed.
 
@@ -136,6 +140,35 @@ The write merges into `sources.config` and flips `is_active` in the same transac
 names the source's own adapter declares are accepted; the stored value is never readable back.
 Up to "the credential is accepted" this has been exercised against a live stack; landing real
 rows for X/Threads awaits the paid tier and App Review.
+
+## Dataset exports (offline / ML prep)
+
+The scraper is the data pipeline behind a separate analysis application; it does not model.
+To hand off reproducible datasets to pandas / Colab / Jupyter, export straight from
+PostgreSQL (the source of truth):
+
+```bash
+uv run python -m trendsentinel.dataset_export --out-dir exports
+```
+
+Writes nine deterministic CSVs into `exports/`:
+
+| File | Contents |
+|---|---|
+| `items.csv` | canonical content records (parity with `GET /export/items.csv`) + universal fields (fingerprint, category/subcategory, content status) |
+| `item_metric_snapshots.csv` | every engagement observation, long form (one row per item·snapshot·metric), with metric unit/definition |
+| `sources.csv` | source capabilities, provenance, supported/observed metrics, runtime collection status |
+| `data_quality_report.csv` | automated validation findings (missing values, duplicates, malformed URLs, timestamp anomalies, relationships, schema coverage) |
+| `topics.csv` | topic registry (header-only until a producer lands) |
+| `item_topic_assignments.csv` | item→topic links (header-only until a producer lands) |
+| `topic_observations.csv` | per-window topic aggregates (header-only until a producer lands) |
+| `item_entities.csv` | extracted entities (header-only until a producer lands) |
+| `training_labels.csv` | explicit supervised labels (header-only until a producer lands) |
+
+Column order is fixed; rows are deterministically ordered; timestamps are timezone-aware
+UTC. The topic/entity/label datasets are emitted header-only because no producer exists and
+this project never fabricates. Schemas, the data dictionary, metric semantics, leakage
+rules, and the ML readiness assessment live in [`docs/data-schema.md`](docs/data-schema.md).
 
 ## Development
 
