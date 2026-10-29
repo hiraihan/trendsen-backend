@@ -16,7 +16,8 @@ from trendsentinel.collectors import (
     reddit,
     rss,
     threads,
+    wikimedia,
     x,
 )
 
-__all__ = ["hackernews", "public_api", "reddit", "rss", "threads", "x"]
+__all__ = ["hackernews", "public_api", "reddit", "rss", "threads", "wikimedia", "x"]

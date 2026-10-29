@@ -128,6 +128,9 @@ def normalize_entry(
             # The feed's own <img>, when the entry HTML carries one — extracted, not
             # fabricated, and https-only (the shared helper's rule).
             THUMBNAIL_KEY: thumbnail_from_html(text_source),
+            # Publisher-assigned tags/categories (RSS <category>, Atom <category>).
+            # Where a feed declares none, the key stays absent.
+            "tags": _entry_tags(entry),
         },
         metrics=parse_hnrss_metrics(description),
     )
@@ -246,6 +249,28 @@ def _first_non_empty(value: Any) -> str | None:
 
     stripped = value.strip()
     return stripped or None
+
+
+def _entry_tags(entry: Mapping[str, Any]) -> list[str] | None:
+    """Return the entry's publisher-assigned tags/categories, or ``None`` when absent.
+
+    feedparser exposes both RSS `<category>` and Atom `<category>` as ``entry.tags``
+    (a list of mappings carrying a ``term``); some feeds also surface ``categories``.
+    Tags are deduplicated in document order — a tag repeated by the publisher is still
+    one tag.
+    """
+    found: list[str] = []
+    for key in ("tags", "categories"):
+        for tag in (entry.get(key) or []):
+            if isinstance(tag, Mapping):
+                term = tag.get("term")
+            else:
+                term = tag
+            if isinstance(term, str):
+                clean = term.strip()
+                if clean and clean not in found:
+                    found.append(clean)
+    return found or None
 
 
 def _truncate(value: str, max_chars: int) -> str:

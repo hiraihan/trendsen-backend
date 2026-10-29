@@ -614,3 +614,85 @@ def test_identity_schemes_are_scoped_per_source() -> None:
     assert a is not None
     assert b is not None
     assert a.external_id != b.external_id
+
+
+# --------------------------------------------------------------------------- tags / new feeds
+
+
+def test_tags_are_extracted_from_rss_categories() -> None:
+    entry = parsed_entries("techcrunch.xml")[0]
+
+    item = normalize_entry(entry, max_text_chars=2000)
+
+    assert item is not None
+    assert item.metadata["tags"] == ["AI", "Startups"]
+
+
+def test_tags_are_extracted_from_atom_categories() -> None:
+    entry = parsed_entries("theverge.xml")[0]
+
+    item = normalize_entry(entry, max_text_chars=2000)
+
+    assert item is not None
+    assert item.metadata["tags"] == ["ai", "science"]
+
+
+def test_tags_absent_when_feed_declares_none() -> None:
+    item = normalize_entry(
+        {"guid": "urn:tags", "title": "t", "summary": "x"}, max_text_chars=100
+    )
+
+    assert item is not None
+    assert item.metadata["tags"] is None
+
+
+def test_theverge_atom_identity_is_the_id_and_author_name() -> None:
+    entry = parsed_entries("theverge.xml")[0]
+
+    item = normalize_entry(entry, max_text_chars=2000)
+
+    assert item is not None
+    assert item.external_id == "https://www.theverge.com/?p=1019143"
+    assert item.author == "Richard Lawler"
+    assert item.published_at is not None
+
+
+def test_techcrunch_identity_is_the_false_permalink_guid() -> None:
+    entry = parsed_entries("techcrunch.xml")[0]
+
+    item = normalize_entry(entry, max_text_chars=2000)
+
+    assert item is not None
+    assert item.external_id == "https://techcrunch.com/?p=123456"
+    assert item.author == "Example Writer"
+    assert item.metadata["tags"] == ["AI", "Startups"]
+
+
+@respx.mock
+async def test_collect_theverge_feed() -> None:
+    respx.get("https://www.theverge.com/rss/index.xml").mock(
+        return_value=httpx.Response(200, content=fixture_bytes("theverge.xml"))
+    )
+
+    result = await collect(
+        make_settings(), "https://www.theverge.com/rss/index.xml", limit=10, min_request_delay_ms=0
+    )
+
+    assert result.ok
+    assert len(result.items) == 1
+    assert result.items[0].external_id == "https://www.theverge.com/?p=1019143"
+
+
+@respx.mock
+async def test_collect_techcrunch_feed() -> None:
+    respx.get("https://techcrunch.com/feed/").mock(
+        return_value=httpx.Response(200, content=fixture_bytes("techcrunch.xml"))
+    )
+
+    result = await collect(
+        make_settings(), "https://techcrunch.com/feed/", limit=10, min_request_delay_ms=0
+    )
+
+    assert result.ok
+    assert len(result.items) == 1
+    assert result.items[0].external_id == "https://techcrunch.com/?p=123456"

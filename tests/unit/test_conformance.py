@@ -35,6 +35,7 @@ from trendsentinel.collectors.loader import (  # noqa: F401 - importing register
     reddit,
     rss,
     threads,
+    wikimedia,
     x,
 )
 from trendsentinel.collectors.registry import available_keys, get_collector
@@ -152,6 +153,15 @@ def _public_api_setup() -> None:
         )
     )
 
+WIKIMEDIA_BASE = "https://wikimedia.org/api/rest_v1/"
+
+def _wikimedia_setup() -> None:
+    respx.get(url__startswith=f"{WIKIMEDIA_BASE}metrics/pageviews/per-article/").mock(
+        return_value=httpx.Response(
+            200, content=(FIXTURES / "wikimedia" / "pageviews_js.json").read_bytes()
+        )
+    )
+
 
 #: One entry per registered collector key. A new adapter adds its row here.
 CASES: dict[str, ConformanceCase] = {
@@ -220,6 +230,18 @@ CASES: dict[str, ConformanceCase] = {
         base_url=PUBLIC_API_URL,
         setup_routes=_public_api_setup,
     ),
+    "wikimedia": ConformanceCase(
+        key="wikimedia",
+        integration="api",
+        config={
+            "collector_key": "wikimedia",
+            "articles": ["JavaScript"],
+            "days": 7,
+        },
+        limit=2,
+        base_url=WIKIMEDIA_BASE,
+        setup_routes=_wikimedia_setup,
+    ),
 }
 
 #: The production registry as of collection time: before any test has run, so test doubles
@@ -269,7 +291,14 @@ def assert_conforms(result: CollectionResult, *, limit: int) -> None:
 
     external_ids = [item.external_id for item in result.items]
     assert all(item_id.strip() == item_id and item_id for item_id in external_ids)
-    assert len(set(external_ids)) == len(external_ids), "identity must be unique within a run"
+    # Identity is unique within a run *at a capture instant*. Time-series sources (e.g.
+    # Wikimedia pageviews) emit several observations of one article across distinct windows,
+    # so the meaningful key is (external_id, captured_at) — same article at the same instant
+    # would still be a duplicate bug.
+    identity_pairs = [(item.external_id, item.captured_at) for item in result.items]
+    assert len(set(identity_pairs)) == len(identity_pairs), (
+        "identity+capture instant must be unique within a run"
+    )
 
     for item in result.items:
         _assert_item_conforms(item)

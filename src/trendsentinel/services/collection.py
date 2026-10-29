@@ -57,7 +57,7 @@ from trendsentinel.logging import get_logger
 #: Integrations that are collectable without credentials (ADR-0008). For these the host
 #: must be in an allowlist before any request is made; a non-allowlisted host fails the run
 #: with ``REJECTED`` at collection time.
-NO_CREDENTIAL_KEYS = frozenset({"rss", "public_api"})
+NO_CREDENTIAL_KEYS = frozenset({"rss", "public_api", "wikimedia"})
 
 __all__ = [
     "SKIPPED",

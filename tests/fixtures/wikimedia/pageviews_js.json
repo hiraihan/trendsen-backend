@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "project": "en.wikipedia",
+      "article": "JavaScript",
+      "granularity": "daily",
+      "timestamp": "2026102100",
+      "access": "all-access",
+      "agent": "user",
+      "views": 1868
+    },
+    {
+      "project": "en.wikipedia",
+      "article": "JavaScript",
+      "granularity": "daily",
+      "timestamp": "2026102200",
+      "access": "all-access",
+      "agent": "user",
+      "views": 1901
+    }
+  ]
+}

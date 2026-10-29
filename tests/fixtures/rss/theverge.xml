@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xml:lang="en-US">
+  <title type="text">The Verge</title>
+  <link rel="alternate" type="text/html" href="https://www.theverge.com" />
+  <id>https://www.theverge.com/rss/index.xml</id>
+  <updated>2026-10-26T23:47:59+00:00</updated>
+  <entry>
+    <author>
+      <name>Richard Lawler</name>
+    </author>
+    <title type="html">OpenAI announces three big science discoveries</title>
+    <link rel="alternate" type="text/html" href="https://www.theverge.com/ai-artificial-intelligence/1019143/openai-eth-kaseya-science-math-physics" />
+    <id>https://www.theverge.com/?p=1019143</id>
+    <updated>2026-10-26T23:40:00+00:00</updated>
+    <published>2026-10-26T23:40:00+00:00</published>
+    <category term="ai" />
+    <category term="science" />
+    <content type="html">&lt;p&gt;OpenAI detailed three research results.&lt;/p&gt;</content>
+  </entry>
+</feed>

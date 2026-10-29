@@ -95,6 +95,15 @@ METRIC_SEMANTICS: dict[str, dict[str, dict[str, str]]] = {
         "replies": {"unit": "count", "definition": "reply count"},
         "views": {"unit": "count", "definition": "view count"},
     },
+    "wikimedia": {
+        "views": {
+            "unit": "count",
+            "definition": (
+                "pageviews measured in the observation's day window, as reported by "
+                "the Wikimedia Pageviews API (all-access, user-agent)"
+            ),
+        },
+    },
 }
 
 _FALLBACK_METRIC: dict[str, str] = {

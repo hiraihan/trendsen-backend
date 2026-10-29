@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+  <channel>
+    <title>TechCrunch</title>
+    <link>https://techcrunch.com/</link>
+    <description>Startup and Technology News</description>
+    <item>
+      <title>How OpenAI turned its coding tools into dots, an always-on personal assistant</title>
+      <link>https://techcrunch.com/2026/10/26/how-openai-turned-its-coding-tools-into-dots-an-always-on-personal-assistant/</link>
+      <guid isPermaLink="false">https://techcrunch.com/?p=123456</guid>
+      <dc:creator>Example Writer</dc:creator>
+      <pubDate>Mon, 26 Oct 2026 20:30:00 +0000</pubDate>
+      <category>AI</category>
+      <category>Startups</category>
+      <description>&lt;p&gt;OpenAI reshaped its coding assistant into a persistent agent.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
